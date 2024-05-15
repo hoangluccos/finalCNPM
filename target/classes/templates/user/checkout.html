@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{user/layout-client.html}">
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" />
+    <title>Thanh toán</title>
+    <link rel="stylesheet" th:href="@{/css/user/checkout.css}" />
+</head>
+<script type="text/javascript">
+    document.addEventListener('DOMContentLoaded', function() {
+        var totalElements = document.querySelectorAll('.total');
+        var orderTotal = 0;
+        totalElements.forEach(function(element) {
+            var totalPrice = parseFloat(element.textContent.trim().replace('VND', '').replace(',', ''));
+            orderTotal += totalPrice;
+        });
+        var tongGiaTriInput = document.getElementById('tongGiaTri');
+        tongGiaTriInput.value = orderTotal; // Gán giá trị orderTotal vào thuộc tính value của input
+        document.getElementById('ordertotal').textContent = orderTotal.toLocaleString('en-US', { style: 'currency', currency: 'VND' });
+    });
+</script>
+<body>
+<div class="body content" layout:fragment="body">
+    <div class="center-container">
+        <form method="POST" action="/thankyou">
+            <br>
+            <h2 class="border-p" style="line-height:1.5; color: #ff6600; font-weight: bold; font-size: 2rem;">Giỏ hàng</h2>
+            <br>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="text-center">
+                        <br>
+                        <p class="border-p" style="line-height:1.5;"><b>Thông tin giao hàng</b></p>
+                        <p style="line-height:2;">Họ tên người nhận (*)</p>
+                        <input class="form-control" size="27" name="receiver" required>
+                        <p style="line-height:2;">Số điện thoại (*)</p>
+                        <input class="form-control" size="27" name="phone" required>
+                        <p style="line-height:2;">Địa chỉ (số nhà, đường, tỉnh/thành phố) (*)</p>
+                        <textarea class="form-control" rows="5" cols="29" name="address" required></textarea>
+                        <br><br>
+                        <input type="hidden" id="tongGiaTri" name="tongGiaTri">
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <main class="text-center">
+                        <table class="table-cart-checkout mytable">
+                            <thead>
+                            <tr>
+                                <th>Tên sản phẩm</th>
+                                <th>Đơn giá</th>
+                                <th>Tổng</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr th:each="sanpham : ${cart}" style="text-align: center;">
+                                <td style="color:green" th:text="${sanpham.product_name}"></td>
+                                <td class="donGia">
+                                    <div class="check " style="display: inline-block;" th:text="${sanpham.price}"></div>
+                                    <div style="display: inline-block;"> x [[${quantity[sanpham.product_id]}]]</div>
+                                </td>
+                                <td>
+                                    <div class="total">[[${sanpham.price * quantity.get(sanpham.product_id)}]] VND</div>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                        <br>
+                        <p>Tổng giá trị đơn hàng: <b id="ordertotal"></b></p>
+                        <br>
+                        <div class="button-group">
+                            <a href="/cart" class="btn btn-primary">Quay lại giỏ hàng</a>
+                            <button class="btn btn-danger pull-center" type="submit" id="submit">Gửi đơn hàng</button>
+                        </div>
+                        <br><br>
+                    </main>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>

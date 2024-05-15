@@ -1,0 +1,155 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+a{
+  text-decoration: none;
+  color : black;
+}
+
+/* ============ Common ============ */
+.content {
+  width: 1440px;
+  /* height: fit-content; */
+  max-width: calc(100% - 48px);
+  /* margin: auto; */
+  margin-left: auto;
+  margin-right: auto;
+}
+a {
+  text-decoration: none;
+}
+.btn {
+  display: inline-block;
+  height: 50px;
+  min-width: 50px;
+  border-radius: 12px;
+  background: #fff;
+  text-align: center;
+  font-size: 1.4rem;
+  padding: 16px 16px;
+}
+.btn:hover {
+  opacity: 0.9;
+}
+/* --------------------Header-------------------- */
+.header {
+  background: #49B8EB;
+  height: 70px;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+.header .search {
+  width: 300px;
+  flex: 2;
+}
+.header .searching{
+  flex: 2;
+}
+.btn.search input[type="text"] {
+  width: 100%; /* Thiết lập chiều rộng của input bằng 100% của khối div */
+  box-sizing: border-box; /* Đảm bảo chiều rộng bao gồm cả padding và border */
+  border: none;
+  font-size: 20px;
+  outline: none;
+  margin-top: -20px;
+}
+.header input:focus {
+  border: none; /* Ẩn border khi focus */
+}
+.header .action {
+  margin-left: auto;
+  display: flex;
+  justify-content: flex-end;
+  flex: 1;
+}
+.header .search {
+  display: flex;
+  flex: 1;
+  justify-content: left;
+  align-items: flex-start;
+}
+.header .action-btn {
+  display: flex;
+  align-items: center;
+}
+.header .action .btn {
+  margin-left: 10px;
+}
+.header .action .btn:last-child {
+  margin-right: 10px;
+}
+/* --------------------nav-------------------- */
+.nav {
+  background: #ddd;
+  height: 70px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding-top: 10px;
+}
+.nav li {
+  margin-left: 30px;
+  padding: 8px 16px;
+  width: 140px;
+}
+.nav a{
+	text-decoration: none;
+}
+.nav img {
+  height: 100%;
+}
+.banner {
+  height: 40vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin-bottom: 16px;
+}
+/* ============ Body ============ */
+.body {
+  min-height: 500px;
+  background: #FFFFFF;
+}
+/* ============ Footer ============ */
+.footer {
+  margin-top: 16px;
+  height: 150px;
+  background: #51566b;
+  display: flex;
+  justify-content: space-evenly;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  padding: 20px;
+  line-height: 1.5;
+  color: #fff;
+}
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-menu a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-menu a:hover {
+  background-color: #ddd;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
